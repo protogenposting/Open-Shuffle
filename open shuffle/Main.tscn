@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cedxrfaiu52lj"]
+
+[ext_resource type="Script" uid="uid://bf5aliw2flkh2" path="res://CamSprite.gd" id="1_1y6jq"]
+[ext_resource type="Texture2D" uid="uid://bx2ygk852bg61" path="res://icon.svg" id="2_2r87i"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CamSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_2r87i")
+centered = false
+script = ExtResource("1_1y6jq")
