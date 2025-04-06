@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Sprite3D
 
 @export var camera_name: String = ""
 var camera: CameraFeed
