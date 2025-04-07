@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cedxrfaiu52lj"]
 
-[ext_resource type="Script" uid="uid://bf5aliw2flkh2" path="res://CamSprite.gd" id="1_1y6jq"]
+[ext_resource type="Script" uid="uid://lwsx641cuu7n" path="res://Camera.cs" id="1_glv2v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uu6xs"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -25,7 +25,7 @@ shadow_enabled = true
 environment = SubResource("Environment_cm0pq")
 
 [node name="CamSprite" type="Sprite3D" parent="."]
-script = ExtResource("1_1y6jq")
+script = ExtResource("1_glv2v")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.76184)
