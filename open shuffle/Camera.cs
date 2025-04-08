@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 using System.IO;
+using Godot.NativeInterop;
 
 public partial class Camera : Sprite3D
 {
@@ -56,11 +57,11 @@ public partial class Camera : Sprite3D
     {
         CameraTexture tex = (CameraTexture)Texture;
 
-		Godot.Bitmap bitmap = new Godot.Bitmap();
+		Godot.Image image = tex.GetImage();
 
-		bitmap.CreateFromImageAlpha(tex.GetImage());
+		godot_packed_byte_array data = image.GetData();
 
-		System.Drawing.Image img = (System.Drawing.Image)bitmap.ConvertToImage();
+        Image<Bgr, byte> img = new Image<Bgr, byte>();
 
 		try
 		{
