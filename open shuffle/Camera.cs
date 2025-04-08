@@ -13,7 +13,6 @@ using Emgu.CV;
 using System.Collections.Generic;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
-using System.IO;
 
 public partial class Camera : Sprite3D
 {
@@ -60,7 +59,9 @@ public partial class Camera : Sprite3D
 
 		bitmap.CreateFromImageAlpha(tex.GetImage());
 
-		System.Drawing.Image img = (System.Drawing.Image)bitmap.ConvertToImage();
+		System.Drawing.Image img = bitmap.ConvertToImage();
+
+		Dictionary<string, Image<Bgr, byte>> IMGDict;
 
 		try
 		{
@@ -70,7 +71,7 @@ public partial class Camera : Sprite3D
 			float threshold = 0.1f;
 			int nPoints = 25;
 
-			var BODY_PARTS = new System.Collections.Generic.Dictionary<string, int>()
+			var BODY_PARTS = new Dictionary<string, int>()
 			{
 				{ "Nose", 0 },
 				{ "Neck", 1 },
@@ -112,14 +113,15 @@ public partial class Camera : Sprite3D
 
 
 			// Load the caffe Model
-			string prototxt = "res://models/pose.prototxt";
+			string prototxt = @"F:\openpose\models\pose\body_25\pose_deploy.prototxt";
+			string modelPath = @"F:\openpose\models\pose\body_25\pose_iter_584000.caffemodel";
 
-			var net = DnnInvoke.ReadNetFromCaffe(prototxt);
+			var net = DnnInvoke.ReadNetFromCaffe(prototxt, modelPath);
 
 			var imgHeight = img.Height;
 			var imgWidth = img.Width;
 
-			var blob = DnnInvoke.BlobFromImage((IInputArray)img, 1.0 / 255.0, new Size(inWidth, inHeight), new MCvScalar(0, 0, 0));
+			var blob = DnnInvoke.BlobFromImage(img, 1.0 / 255.0, new Size(inWidth, inHeight), new MCvScalar(0, 0, 0));
 			net.SetInput(blob);
 			net.SetPreferableBackend(Emgu.CV.Dnn.Backend.OpenCV);
 
