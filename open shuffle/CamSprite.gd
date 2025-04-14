@@ -29,4 +29,3 @@ func _ready():
 
 func _process(delta: float) -> void:
 	pass
-	#scale = texture.get_size()
