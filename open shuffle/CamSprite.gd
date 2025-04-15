@@ -2,6 +2,7 @@ extends Sprite3D
 
 @export var camera_name: String = ""
 var camera: CameraFeed
+var model : CVNet
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,6 +27,10 @@ func _ready():
 	texture = CameraTexture.new()
 	
 	texture.camera_feed_id = camera.get_id()
+	
+	model = CVDnn.readNet("res://models/pose.prototxt",Dictionary())
+	
+	print(model)
 
 func _process(delta: float) -> void:
 	pass
